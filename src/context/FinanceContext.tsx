@@ -18,6 +18,7 @@ interface FinanceContextType {
     totalIncome: number;
     totalExpenses: number;
     gettransactionById: (id: string) => Transaction | undefined;
+    topCategory: { name: string; total: number } | null;
 }
 
 const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
@@ -152,12 +153,21 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
         return { totalBalance: income - expenses, totalIncome: income, totalExpenses: expenses };
     }, [transactions]);
 
+    const [topCategory, setTopCategories] = useState<{ name: string; total: number } | null>(null);
+    let data = chartData;
+    data.sort((a, b) => b.total - a.total)
+    if (data.length > 0) {
+        const top = data[0];
+        if (!topCategory || top.name !== topCategory.name) {
+            setTopCategories({ name: top.name, total: top.total });
+        }
+    }
     const gettransactionById = (id: string) => {
         return transactions.find(tx => tx.id === id);
     };
 
     return (
-        <FinanceContext.Provider value={{ transactions, setTransactions, groupedData: { chartData, total }, totalBalance, totalIncome, totalExpenses, gettransactionById }}>
+        <FinanceContext.Provider value={{ transactions, setTransactions, groupedData: { chartData, total }, totalBalance, totalIncome, totalExpenses, gettransactionById, topCategory }}>
             {children}
         </FinanceContext.Provider>
     );
