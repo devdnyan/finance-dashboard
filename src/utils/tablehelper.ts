@@ -7,7 +7,7 @@ const amountFormatter =  (row: Transaction) => {
 
     return createElement(
         "span",
-        { className: `font-medium ${isIncome ? "text-emerald-600" : "text-red-500"}` },
+        { className: `font-semibold ${isIncome ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}` },
         `${isIncome ? "+" : "-"}$${formattedAmount}`
     );
 };
@@ -15,7 +15,7 @@ const amountFormatter =  (row: Transaction) => {
 const dateBody = (row: Transaction) => 
     createElement(
         "span",
-        { className: "text-gray-800 font-medium" },
+        { className: "font-medium text-slate-700 dark:text-slate-300" },
         new Date(row.date).toLocaleDateString("en-IN", {
             month: "short",
             day: "2-digit",
@@ -23,16 +23,30 @@ const dateBody = (row: Transaction) =>
     );
 
 
-    const textBody = (text: string) => (
+const textBody = (text: string) => (
         createElement(
             "span",
-            { className: "text-gray-800 font-medium capitalize" },
+            { className: "font-medium text-slate-700 capitalize dark:text-slate-300" },
             text
         )
     );
 
+const typeBody = (row: Transaction) => (
+    createElement(
+        "span",
+        {
+            className: `inline-flex rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${
+                row.type === "income"
+                    ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+                    : "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300"
+            }`
+        },
+        row.type
+    )
+);
 
-export { amountFormatter, dateBody, textBody };
+
+export { amountFormatter, dateBody, textBody, typeBody };
 
 
     // const amountFormatter = (row: Transaction) => {

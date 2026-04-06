@@ -8,10 +8,10 @@ export default function Summary() {
     const{ totalBalance, totalIncome, totalExpenses, topCategory } = useFinance();
     return (
         <section className="space-y-3 xl:flex xl:h-full xl:flex-col xl:space-y-3">
-            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-[0_2px_10px_-4px_rgba(15,23,42,0.12)] backdrop-blur-sm sm:p-5 xl:flex-shrink-0">
+            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-[0_2px_10px_-4px_rgba(15,23,42,0.12)] backdrop-blur-sm sm:p-5 xl:flex-shrink-0 dark:border-slate-700/80 dark:bg-slate-900/70">
                 <div className="mb-3 flex items-end justify-between">
-                    <h2 className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">Summary</h2>
-                    <p className="text-xs font-medium text-slate-500">Updated from live transaction data</p>
+                    <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-xl">Summary</h2>
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Updated from live transaction data</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:gap-4">
                     <Card 
