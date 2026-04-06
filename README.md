@@ -1,5 +1,9 @@
 # Finance Dashboard
 
+## Live Demo
+
+**Deployed App:** https://finance-dashboard-pi-liart.vercel.app/
+
 This is a responsive finance dashboard built with React, TypeScript, and Vite. It helps track transactions, view financial summaries, and switch between viewer/admin access.
 
 ## Assignment Objective
