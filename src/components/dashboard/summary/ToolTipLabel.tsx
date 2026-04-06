@@ -1,6 +1,6 @@
 type CustomTooltipProps = {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{ payload: { fill?: string } & Record<string, string | number> }>;
   name: string;
   total: string;
 };
@@ -10,6 +10,9 @@ export default function CustomTooltip({ active, payload, name, total }: CustomTo
 
   if (active && payload && payload.length) {
     const data = payload[0].payload;
+    const totalValue = data[total];
+    const fillColor = typeof data.fill === "string" ? data.fill : undefined;
+    const formattedTotal = typeof totalValue === "number" ? totalValue.toLocaleString() : totalValue;
 
     return (
       <div 
@@ -17,7 +20,7 @@ export default function CustomTooltip({ active, payload, name, total }: CustomTo
         
         <p
           className="font-semibold"
-          style={{ color: data.fill }}
+          style={{ color: fillColor }}
         >
           {data[name]}
         </p>
@@ -25,7 +28,7 @@ export default function CustomTooltip({ active, payload, name, total }: CustomTo
         <p className="mt-1 text-slate-600 dark:text-slate-300">
           Total:{" "}
           <span className="font-bold">
-            ${data[total].toLocaleString()}
+            ${formattedTotal}
           </span>
         </p>
       </div>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ThemesContext } from "./ThemesContext";
-import { RoleContext } from "./RoleContext";
-import { FinanceContext } from "./FinanceContext";
+import { ThemesContext } from "./ThemesContextValue";
+import { RoleContext } from "./RoleContextValue";
+import { FinanceContext } from "./FinanceContextValue";
 
 export const useThemes = () => {
     const context = useContext(ThemesContext);

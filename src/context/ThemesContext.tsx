@@ -1,17 +1,9 @@
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { ThemesContext, type ThemesContextType } from "./ThemesContextValue";
 
-type Theme = "light" | "dark";
-
-type ThemesContextType = {
-	theme: Theme;
-	isDark: boolean;
-	toggleTheme: () => void;
-	setTheme: (theme: Theme) => void;
-};
+type Theme = ThemesContextType["theme"];
 
 const STORAGE_KEY = "finance-dashboard-theme";
-
-export const ThemesContext = createContext<ThemesContextType | undefined>(undefined);
 
 const getPreferredTheme = (): Theme => {
 	if (typeof window === "undefined") {

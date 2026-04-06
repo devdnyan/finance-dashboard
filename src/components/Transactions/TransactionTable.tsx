@@ -41,7 +41,6 @@ export default function TransactionTable() {
         const mediaQuery = window.matchMedia("(max-width: 1279px)");
         const updateScreenMode = (event: MediaQueryListEvent) => setIsCompactScreen(event.matches);
 
-        setIsCompactScreen(mediaQuery.matches);
         mediaQuery.addEventListener("change", updateScreenMode);
 
         return () => {

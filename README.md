@@ -1,73 +1,156 @@
-# React + TypeScript + Vite
+# Finance Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a responsive finance dashboard built with React, TypeScript, and Vite. It helps track transactions, view financial summaries, and switch between viewer/admin access.
 
-Currently, two official plugins are available:
+## Assignment Objective
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+For this assignment, I focused on building a practical dashboard with:
 
-## React Compiler
+- summary cards for key financial metrics
+- chart-based insights for trend and category breakdown
+- transaction table with search and CRUD actions
+- role-based UI behavior (viewer/admin)
+- light and dark theme support
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript 5
+- Vite 8
+- Tailwind CSS 4
+- Recharts
+- PrimeReact DataTable
+- ESLint 9
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features Implemented
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Dashboard Summary
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Total Balance
+- Total Income
+- Total Expenses
+- Top Expense Category
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+These values are calculated from shared transaction state managed with React Context.
+
+### 2. Visual Analytics
+
+- Line chart for cash flow trend over months
+- Pie chart for expense category distribution
+- Custom tooltip component for chart values
+
+### 3. Transactions Module
+
+- searchable transaction table
+- sorted by latest date by default
+- add transaction (admin only)
+- edit transaction (admin only)
+- delete transaction (admin only)
+- form validation for date, category, and positive amount
+
+### 4. Role-Based Access
+
+- Viewer: can view data
+- Admin: can add/edit/delete transactions
+
+Role can be switched from the navbar to demonstrate permission-based UI behavior.
+
+### 5. Theme Support
+
+- Light mode and dark mode toggle
+- Theme persisted using localStorage
+- Root color-scheme and dark class updated automatically
+
+## Project Structure
+
+```text
+src/
+  components/
+    dashboard/
+      Summary.tsx
+      summary/
+        Card.tsx
+        LineChart.tsx
+        PiChart.tsx
+        ToolTipLabel.tsx
+    nav/
+      NavigationBar.tsx
+    Transactions/
+      TransactionTable.tsx
+  context/
+    FinanceContext.tsx
+    FinanceContextValue.ts
+    RoleContext.tsx
+    RoleContextValue.ts
+    ThemesContext.tsx
+    ThemesContextValue.ts
+    hooks.tsx
+  assets/
+    tmonths.ts
+  utils/
+    helperfunctions.ts
+    tablehelper.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Setup and Run
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+npm install
 ```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Current Data Behavior
+
+- Finance summaries and pie chart are driven by the current transaction state.
+- The line chart currently uses the seeded dataset from `src/assets/tmonths.ts`.
+
+## Submission Checklist
+
+- Code compiles successfully with `npm run build`
+- Linting passes with `npm run lint`
+- UI is responsive across desktop and mobile layouts
+- Role toggle and theme toggle are functional
+
+## Future Improvements
+
+- Connect transactions to a backend or local persistence layer
+- Drive all charts from live transaction state
+- Add pagination and advanced filters to the transaction table
+- Add unit and component tests
+
+## Assignment Assumptions
+
+- The application uses seeded dummy data from `src/assets/tmonths.ts` as the primary dataset.
+- Dashboard values and chart output depend on this sample dataset unless transactions are edited during runtime.
+- No backend/API integration is assumed for this assignment submission.
+- Data changes made in the UI are in-memory only and reset on page refresh.
