@@ -245,7 +245,7 @@ export default function TransactionTable() {
                         header: { className: 'bg-transparent border-none p-0' },
                         wrapper: { className: isCompactScreen ? 'h-full' : '' },
                         table: { className: 'min-w-full text-left border-collapse dark:text-slate-200' },
-                        thead: { className: isCompactScreen ? 'sticky top-0 z-20 bg-slate-50/95 backdrop-blur rounded-lg dark:bg-slate-800/95' : 'bg-slate-50/90 rounded-lg dark:bg-slate-800/90' },
+                        thead: { className: isCompactScreen ? 'sticky top-0 z-20 bg-slate-50/95 backdrop-blur rounded-lg dark:bg-slate-800/95' : 'sticky top-0 z-20 bg-slate-50/90 rounded-lg dark:bg-slate-800/90' },
                         headerRow: { className: 'text-slate-600 text-sm dark:text-slate-300' },
                         emptyMessage: { className: 'border-none' },
                         bodyRow: { className: 'border-b border-slate-100 hover:bg-slate-50/70 transition-colors dark:border-slate-700 dark:hover:bg-slate-800/60' }
