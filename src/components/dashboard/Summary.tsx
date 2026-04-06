@@ -1,8 +1,11 @@
+import { useFinance } from "../../context/FinanceContext";
 import Card from "./summary/Card";
 import LChart from "./summary/LineChart";
 import PiChart from "./summary/PiChart";
 
 export default function Summary() {
+
+    const{ totalBalance, totalIncome, totalExpenses } = useFinance();
     return (
         <>
             <div>
@@ -11,20 +14,20 @@ export default function Summary() {
                     <Card 
                         className="row-span-2"
                         title="Total Balance" 
-                        value={10000} 
+                        value={totalBalance} 
                     >
                         <p className="text-sm text-gray-500">+10% from last month</p>
                     </Card>
                     <Card 
                         className=""
                         title="Total Income" 
-                        value={5000} 
+                        value={totalIncome} 
                     >
                         <p className="text-sm text-gray-500">+5% from last month</p>
                     </Card>
                     <Card 
                         title="Total Expenses" 
-                        value={3000} 
+                        value={totalExpenses} 
                     >
                         <p className="text-sm text-gray-500">+2% from last month</p>
                     </Card>

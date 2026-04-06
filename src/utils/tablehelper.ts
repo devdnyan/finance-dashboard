@@ -2,17 +2,17 @@ import { createElement } from "react";
 import type { Transaction } from "../assets/tmonths";
 
 const amountFormatter =  (row: Transaction) => {
-        const isIncome = row.type === "income";
-        const formattedAmount = row.amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const isIncome = row.type === "income";
+    const formattedAmount = row.amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-        return createElement(
-            "span",
-            { className: `font-medium ${isIncome ? "text-emerald-600" : "text-gray-800"}` },
-            `${isIncome ? "+" : "-"}₹${formattedAmount}`
-        );
+    return createElement(
+        "span",
+        { className: `font-medium ${isIncome ? "text-emerald-600" : "text-red-500"}` },
+        `${isIncome ? "+" : "-"}$${formattedAmount}`
+    );
 };
 
- const dateBody = (row: Transaction) => 
+const dateBody = (row: Transaction) => 
     createElement(
         "span",
         { className: "text-gray-800 font-medium" },
@@ -24,12 +24,12 @@ const amountFormatter =  (row: Transaction) => {
 
 
     const textBody = (text: string) => (
-            createElement(
-                "span",
-                { className: "text-gray-800 font-medium capitalize" },
-                text
-            )
-        );
+        createElement(
+            "span",
+            { className: "text-gray-800 font-medium capitalize" },
+            text
+        )
+    );
 
 
 export { amountFormatter, dateBody, textBody };
@@ -39,7 +39,7 @@ export { amountFormatter, dateBody, textBody };
     //     const isIncome = row.type === "income";
     //     return (
     //         <span className={`font-medium ${isIncome ? "text-emerald-600" : "text-gray-800"}`}>
-    //             {isIncome ? "+" : "-"}₹{row.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+    //             {isIncome ? "+" : "-"}${row.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
     //         </span>
     //     );
     // };

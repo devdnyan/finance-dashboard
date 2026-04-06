@@ -17,7 +17,7 @@ export default function CustomTooltip({ active, payload, name, total }: any){
 
         <p className="mt-1 opacity-80">
           Total:{" "}
-          <span className="font-semibold">
+          <span className="font-bold">
             ${data[total].toLocaleString()}
           </span>
         </p>
