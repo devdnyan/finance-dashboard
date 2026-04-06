@@ -201,14 +201,12 @@ export default function TransactionTable() {
 
     return (
         <>
-            <div className="flex flex-col p-4 bg-white rounded-2xl border border-gray-100 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] sticky top-[80px] h-[calc(100vh-100px)] xl:static xl:h-full z-10">
+            <div className="z-10 flex h-full flex-col rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-[0_8px_20px_-16px_rgba(15,23,42,0.55)] backdrop-blur-sm">
                 <DataTable
                     header={headerElement}
                     value={transactions}
                     globalFilter={globalFilter}
                     emptyMessage={emptyStateTemplate}
-                    scrollable
-                    scrollHeight="flex"
                     dataKey="id"
                     sortField="date"
                     sortOrder={-1}
@@ -217,10 +215,10 @@ export default function TransactionTable() {
                         header: { className: 'bg-transparent border-none p-0' },
                         wrapper: { className: 'h-full' },
                         table: { className: 'min-w-full text-left border-collapse' },
-                        thead: { className: 'bg-gray-50/80 rounded-lg' },
-                        headerRow: { className: 'text-gray-600 text-sm' },
+                        thead: { className: 'bg-slate-50/90 rounded-lg' },
+                        headerRow: { className: 'text-slate-600 text-sm' },
                         emptyMessage: { className: 'border-none' },
-                        bodyRow: { className: 'border-b border-gray-100 hover:bg-gray-50/50 transition-colors' }
+                        bodyRow: { className: 'border-b border-slate-100 hover:bg-slate-50/70 transition-colors' }
                     }}
                 >
                     <Column field="date" header="Date" sortable body={dateBody} headerClassName="py-3 px-4 font-semibold rounded-l-lg border-none" className="py-4 px-4 border-none" />
@@ -239,7 +237,7 @@ export default function TransactionTable() {
             </div>
 
             {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-stretch justify-end bg-slate-950/40 backdrop-blur-[2px]" role="dialog" aria-modal="true" aria-label={isEditing ? "Edit Transaction" : "Add New Transaction"}>
+                <div className="fixed inset-0 z-50 flex items-stretch justify-end bg-slate-950/45 backdrop-blur-[2px]" role="dialog" aria-modal="true" aria-label={isEditing ? "Edit Transaction" : "Add New Transaction"}>
                     <div className="h-full w-full sm:w-4/5 lg:w-3/5 xl:w-3/7 rounded-none sm:rounded-l-2xl bg-gradient-to-b from-white to-slate-50 shadow-2xl border border-slate-200 overflow-hidden">
                         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200 bg-white/80">
                             <h3 className="text-lg font-semibold text-slate-900">{isEditing ? "Edit Transaction" : "Add New Transaction"}</h3>
@@ -283,7 +281,7 @@ export default function TransactionTable() {
                                     id="transaction-categories" 
                                     value={formData.category} 
                                     onChange={(e) => handleInputChange("category", e.target.value)} 
-                                    className="w-full p-2 border rounded-md bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+                                    className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                                     required
                                 >
                                     <option value="" disabled>Select a category</option>

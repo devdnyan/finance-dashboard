@@ -6,7 +6,7 @@ export default function CustomTooltip({ active, payload, name, total }: any){
 
     return (
       <div 
-        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md text-sm">
+        className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900 shadow-lg shadow-slate-900/5">
         
         <p
           className="font-semibold"
@@ -15,7 +15,7 @@ export default function CustomTooltip({ active, payload, name, total }: any){
           {data[name]}
         </p>
 
-        <p className="mt-1 opacity-80">
+        <p className="mt-1 text-slate-600">
           Total:{" "}
           <span className="font-bold">
             ${data[total].toLocaleString()}

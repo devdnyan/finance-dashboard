@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+	--bg-page: #f2f5fb;
+	--bg-surface: #ffffff;
+	--text-primary: #0f172a;
+	--text-muted: #64748b;
+	--brand-500: #4f46e5;
+	--brand-600: #4338ca;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	background:
+		radial-gradient(circle at 10% -20%, rgba(79, 70, 229, 0.12), transparent 34%),
+		radial-gradient(circle at 95% 10%, rgba(59, 130, 246, 0.08), transparent 38%),
+		var(--bg-page);
+	color: var(--text-primary);
+	font-family: "Manrope", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
