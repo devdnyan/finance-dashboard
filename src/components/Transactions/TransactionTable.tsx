@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useFinance } from "../../context/FinanceContext";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { amountFormatter, dateBody, textBody, typeBody} from "../../utils/tablehelper";
-import { useRole } from "../../context/RoleContext";
+import { useRole, useFinance } from "../../context/hooks";
 
 
 type Transaction = {
@@ -17,6 +16,7 @@ type Transaction = {
 export default function TransactionTable() {
     const { transactions, setTransactions, gettransactionById } = useFinance();
     const [globalFilter, setGlobalFilter] = useState<string>('');
+
     const [isCompactScreen, setIsCompactScreen] = useState(() => {
         if (typeof window === "undefined") {
             return false;

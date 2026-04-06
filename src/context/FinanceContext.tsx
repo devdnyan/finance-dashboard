@@ -1,24 +1,32 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 import { groupDataByCategory } from '../utils/helperfunctions';
 import type { Transaction } from '../assets/tmonths';
 import DummyTransactions from '../assets/tmonths';
 
+type ChartData = {
+    name: string;
+    total: number;
+    fill: string;
+}
+
 interface FinanceContextType {
     transactions: Transaction[];
     setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
-    groupedData: { chartData: any[]; total: number };
+    groupedData: { chartData: ChartData[]; total: number };
     totalBalance: number;
     totalIncome: number;
     totalExpenses: number;
     gettransactionById: (id: string) => Transaction | undefined;
     topCategory: { name: string; total: number } | null;
 }
-const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
+
+
 const COLORS = ["#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
-const initialTransactions: Transaction[] = DummyTransactions;
+
+export const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
 
 export function FinanceProvider({ children }: { children: React.ReactNode }) {
-    const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+    const [transactions, setTransactions] = useState<Transaction[]>(DummyTransactions);
     const { chartData, total} = useMemo(() => {
             const expenseData = transactions.filter(tx => tx.type === "expense");
             const groupedData = groupDataByCategory(expenseData);
@@ -64,12 +72,3 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
         </FinanceContext.Provider>
     );
 }
-
-
-export const useFinance = () => {
-  const context = useContext(FinanceContext);
-  if (!context) {
-    throw new Error('useFinance must be used within a FinanceProvider');
-  }
-  return context;
-};

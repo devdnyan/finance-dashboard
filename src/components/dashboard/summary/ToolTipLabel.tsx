@@ -1,4 +1,11 @@
-export default function CustomTooltip({ active, payload, name, total }: any){
+type CustomTooltipProps = {
+  active?: boolean;
+  payload?: any[];
+  name: string;
+  total: string;
+};
+
+export default function CustomTooltip({ active, payload, name, total }: CustomTooltipProps) {
 
 
   if (active && payload && payload.length) {

@@ -1,6 +1,6 @@
 import { Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import CustomTooltip from "./ToolTipLabel";
-import { useFinance } from "../../../context/FinanceContext";
+import { useFinance } from "../../../context/hooks";
 
 export default function PiChart() {
     

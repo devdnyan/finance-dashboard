@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 type Theme = "light" | "dark";
 
-type RoleNThemesContextType = {
+type ThemesContextType = {
 	theme: Theme;
 	isDark: boolean;
 	toggleTheme: () => void;
@@ -11,7 +11,7 @@ type RoleNThemesContextType = {
 
 const STORAGE_KEY = "finance-dashboard-theme";
 
-const RoleNThemesContext = createContext<RoleNThemesContextType | undefined>(undefined);
+export const ThemesContext = createContext<ThemesContextType | undefined>(undefined);
 
 const getPreferredTheme = (): Theme => {
 	if (typeof window === "undefined") {
@@ -26,7 +26,7 @@ const getPreferredTheme = (): Theme => {
 	return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
-export function RoleNThemesProvider({ children }: { children: React.ReactNode }) {
+export function ThemesProvider({ children }: { children: React.ReactNode }) {
 	const [theme, setThemeState] = useState<Theme>(getPreferredTheme);
 
 	useEffect(() => {
@@ -56,13 +56,5 @@ export function RoleNThemesProvider({ children }: { children: React.ReactNode })
 		[theme],
 	);
 
-	return <RoleNThemesContext.Provider value={value}>{children}</RoleNThemesContext.Provider>;
+	return <ThemesContext.Provider value={value}>{children}</ThemesContext.Provider>;
 }
-
-export const useRoleNThemes = () => {
-	const context = useContext(RoleNThemesContext);
-	if (!context) {
-		throw new Error("useRoleNThemes must be used within RoleNThemesProvider");
-	}
-	return context;
-};

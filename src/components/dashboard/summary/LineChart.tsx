@@ -3,7 +3,7 @@ import { XAxis, YAxis, Tooltip } from 'recharts';
 import DummyTransactions from '../../../assets/tmonths';
 import type { Transaction } from '../../../assets/tmonths';
 import CustomTooltip from './ToolTipLabel';
-import { useRoleNThemes } from '../../../context/RoleNThemesContext';
+import { useThemes } from '../../../context/hooks';
 
 type dataVars = {
     month: string;
@@ -37,7 +37,7 @@ const toShort = (value: number) => {
 const yTicks = [0, 2000, 4000, 5000, 6000, 7000, 8000];
 
 export default function LChart() {
-    const { isDark } = useRoleNThemes();
+    const { isDark } = useThemes();
 
     return (
         <div className="flex h-[21rem] w-full flex-col rounded-2xl border border-indigo-100 bg-gradient-to-b from-white to-indigo-50/40 p-4 shadow-[0_8px_20px_-16px_rgba(79,70,229,0.5)] sm:h-[22rem] sm:p-5 xl:h-full xl:min-h-0 dark:border-indigo-900/50 dark:from-slate-900 dark:to-indigo-950/35">

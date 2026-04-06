@@ -1,4 +1,4 @@
-import { useFinance } from "../../context/FinanceContext";
+import { useFinance } from "../../context/hooks";
 import Card from "./summary/Card";
 import LChart from "./summary/LineChart";
 import PiChart from "./summary/PiChart";

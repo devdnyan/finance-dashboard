@@ -2,12 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { RoleNThemesProvider } from './context/RoleNThemesContext.tsx'
+import { ThemesProvider } from './context/ThemesContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RoleNThemesProvider>
+    <ThemesProvider>
       <App />
-    </RoleNThemesProvider>
+    </ThemesProvider>
   </StrictMode>,
 )

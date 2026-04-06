@@ -1,8 +1,7 @@
-import { useRole } from "../../context/RoleContext";
-import { useRoleNThemes } from "../../context/RoleNThemesContext";
+import { useThemes, useRole } from "../../context/hooks";
 
 export default function NavigationBar() {
-    const { isDark, toggleTheme } = useRoleNThemes();
+    const { isDark, toggleTheme } = useThemes();
     const { role, setRole } = useRole();
 
     return (
