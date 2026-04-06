@@ -2,6 +2,8 @@ import { useState } from "react";
 import DummyTransactions from "../../assets/tmonths";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { amountFormatter, dateBody, textBody} from "../../utils/tablehelper";
+
 
 type Transaction = {
     id: string;
@@ -18,27 +20,35 @@ export default function TransactionTable() {
         console.log("Open Add Transaction Modal/Form");
     };
 
-    const amountFormatter = (row: Transaction) => {
-        const isIncome = row.type === "income";
-        return (
-            <span className={`font-medium ${isIncome ? "text-emerald-600" : "text-gray-800"}`}>
-                {isIncome ? "+" : "-"}₹{row.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </span>
-        );
+    const handleEdit = (rowData: Transaction) => {
+        console.log("Editing transaction:", rowData.id);
     };
 
-    const dateBody = (row: Transaction) => (
-        <span className="text-gray-800 font-medium">
-            {new Date(row.date).toLocaleDateString("en-IN", {
-                month: "short",
-                day: "2-digit",
-            })}
-        </span>
-    );
+    const handleDelete = (rowData: Transaction) => {
+        console.log("Deleting transaction:", rowData.id);
+    };
 
-    const textBody = (text: string) => (
-        <span className="text-gray-800 font-medium capitalize">{text}</span>
-    );
+
+    const actionBodyTemplate = (rowData: Transaction) => {
+        return (
+            <div className="flex items-center gap-2">
+                <button
+                    onClick={() => handleEdit(rowData)}
+                    className="p-2 hover:bg-blue-50 rounded-lg transition-colors group"
+                    title="Edit"
+                >
+                    <img src="/icons/edit.svg" alt="Edit" className="w-5 h-5 opacity-70 group-hover:opacity-100" />
+                </button>
+                <button
+                    onClick={() => handleDelete(rowData)}
+                    className="p-2 hover:bg-red-50 rounded-lg transition-colors group"
+                    title="Delete"
+                >
+                    <img src="/icons/delete.svg" alt="Delete" className="w-5 h-5 opacity-70 group-hover:opacity-100" />
+                </button>
+            </div>
+        );
+    };
 
     const headerElement = (
         <div className="pt-2 pb-4 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -115,6 +125,14 @@ export default function TransactionTable() {
                 <Column field="amount" header="Amount" sortable body={amountFormatter} headerClassName="py-3 px-4 font-semibold border-none" className="py-4 px-4 border-none" />
                 <Column field="category" header="Category" sortable body={(row) => textBody(row.category)} headerClassName="py-3 px-4 font-semibold border-none" className="py-4 px-4 border-none" />
                 <Column field="type" header="Type" sortable body={(row) => textBody(row.type)} headerClassName="py-3 px-4 font-semibold rounded-r-lg border-none" className="py-4 px-4 border-none" />
+                <Column 
+                    header="Actions" 
+                    body={actionBodyTemplate} 
+                    headerClassName="py-3 px-4 font-semibold rounded-r-lg border-none" 
+                    className="py-4 px-4 border-none" 
+                    exportable={false} 
+                    style={{ minWidth: '100px' }}
+                />
             </DataTable>
         </div>
     );
