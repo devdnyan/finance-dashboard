@@ -6,16 +6,6 @@
 
 This is a responsive finance dashboard built with React, TypeScript, and Vite. It helps track transactions, view financial summaries, and switch between viewer/admin access.
 
-## Assignment Objective
-
-For this assignment, I focused on building a practical dashboard with:
-
-- summary cards for key financial metrics
-- chart-based insights for trend and category breakdown
-- transaction table with search and CRUD actions
-- role-based UI behavior (viewer/admin)
-- light and dark theme support
-
 ## Tech Stack
 
 - React 19
